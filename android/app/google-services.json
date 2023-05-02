@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "159664010513",
+    "project_id": "iron-body-3dcfd",
+    "storage_bucket": "iron-body-3dcfd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159664010513:android:c13439b55886c571f6c8b0",
+        "android_client_info": {
+          "package_name": "com.mycompany.ironbody"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159664010513-pi7urummlkjbccj4o4ufviu1mfqh9hqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKURvXZRU6BvqYQGi7HZUGtgYHUTRskyU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159664010513-53ngh5ksuoptq3dpl8ns6nq4fer71dfj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "159664010513-2naj3fsp58eur7rmh4fhml4e6s72vn37.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.ironbody"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
