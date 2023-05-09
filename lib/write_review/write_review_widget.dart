@@ -1,7 +1,8 @@
+import 'package:iron_body/flutter_flow/nav/nav.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/trainer_detail/trainer_detail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,7 +42,7 @@ class _WriteReviewWidgetState extends State<WriteReviewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<ApplicationState>();
+    context.watch<FFAppState>();
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
@@ -57,7 +58,7 @@ class _WriteReviewWidgetState extends State<WriteReviewWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 25.0, 20.0, 25.0),
                 child: Container(
                   width: double.infinity,
-                  height: 170.0,
+                  height: 210.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primaryBackground,
                   ),
@@ -86,13 +87,7 @@ class _WriteReviewWidgetState extends State<WriteReviewWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          TrainerDetailWidget(),
-                                    ),
-                                  );
+                                  context.pushNamed('TrainerDetail');
                                 },
                                 child: Icon(
                                   Icons.keyboard_arrow_left,
@@ -117,6 +112,16 @@ class _WriteReviewWidgetState extends State<WriteReviewWidget> {
                             ),
                           ],
                         ),
+
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              15.0, 20.0, 15.0, 25.0),
+                          child: Text(
+                            'Califica a tu entrenador siendo cinco estrellas la calificación más alta y una estrella la más baja. ',
+                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          ),
+                        ),
+
                         RatingBar.builder(
                           onRatingUpdate: (newValue) =>
                               setState(() => _model.ratingBarValue = newValue),
@@ -125,19 +130,12 @@ class _WriteReviewWidgetState extends State<WriteReviewWidget> {
                             color: FlutterFlowTheme.of(context).primary,
                           ),
                           direction: Axis.horizontal,
-                          initialRating: _model.ratingBarValue ??= 4.0,
+                          allowHalfRating: true,
+                          initialRating: _model.ratingBarValue ??= 3.5,
                           unratedColor: FlutterFlowTheme.of(context).accent2,
                           itemCount: 5,
                           itemSize: 40.0,
                           glowColor: FlutterFlowTheme.of(context).primary,
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 20.0, 0.0, 25.0),
-                          child: Text(
-                            'Califica a tu entrenador siendo cinco estrellas la calificación más alta y una estrella la más baja. ',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
-                          ),
                         ),
                       ],
                     ),
@@ -145,7 +143,7 @@ class _WriteReviewWidgetState extends State<WriteReviewWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 25.0, 20.0, 20.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
                 child: Container(
                   width: double.infinity,
                   height: 200.0,

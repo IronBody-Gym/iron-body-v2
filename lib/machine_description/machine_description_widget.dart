@@ -72,7 +72,7 @@ class _MachineDescriptionWidgetState extends State<MachineDescriptionWidget> {
                           'Ld5}6~oRW5aus^WQavfPj^auj_a#',
                         ),
                         image: CachedNetworkImageProvider(
-                          'https://s3-alpha-sig.figma.com/img/3be5/76f4/8aed86b81c451050ff12fc47567f56dc?Expires=1682899200&Signature=WE5YyPYDRJ3NmaHI2Zp2l4Y2n7xUcm59HGmw6PdMZddkBkmsPpe9~Yk9uIM6LbikCYL3gwtj6HMczqS8QdKWNaVso-iOBPV-wKzQfNwVShPWnxqH94nKQ~zBbfJC1wzFz82O8Rvcmk2XoMlEolp-j6LV5k2RqBwEFqZf6i4tunGHdPPJSH6tRentxpcmpDFe2EomvzcTyZ7SyvtdpZ8Kvlmz1oZ6wwJER~Uf-1wzh95BudJd6z~0rt6tDlt~GiA7b0MqsbAPISFhhFXfejGMCixASr7KjYvWjcEpjYSu-IstA~VSEzNgR5nN6cUsmOL2T3QDxSg5n21Ue7SPjiF-5g__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                          'https://i.imgur.com/sfEdYdM.jpeg',
                         ),
                         width: 100.0,
                         height: 177.0,

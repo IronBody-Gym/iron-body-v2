@@ -1,4 +1,6 @@
 import 'package:go_router/go_router.dart';
+import 'package:iron_body/backend/auth_manager.dart';
+import 'package:iron_body/flutter_flow/nav/nav.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -15,8 +17,6 @@ import 'login2_model.dart';
 export 'login2_model.dart';
 import 'package:iron_body/backend/app_state.dart';
 
-
-
 class Login2Widget extends StatefulWidget {
   const Login2Widget({Key? key}) : super(key: key);
 
@@ -25,6 +25,8 @@ class Login2Widget extends StatefulWidget {
 }
 
 class _Login2WidgetState extends State<Login2Widget> {
+  final _authManager = AuthManager();
+  AuthManager get authManager => _authManager;
   late Login2Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -41,9 +43,9 @@ class _Login2WidgetState extends State<Login2Widget> {
 
   @override
   void dispose() {
-    _model.dispose();
+    // _model.dispose();
 
-    _unfocusNode.dispose();
+    // _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -362,10 +364,20 @@ class _Login2WidgetState extends State<Login2Widget> {
                                       ),
                                       FFButtonWidget(
                                         onPressed: () async {
-                                      
+                                          GoRouter.of(context)
+                                              .prepareAuthEvent();
+
+                                          final user = await authManager.signIn(
+                                            context,
+                                            _model.emailController.text,
+                                            _model.passwController.text,
+                                          );
+                                          if (user == null) {
+                                            return;
+                                          }
                                           GoRouter.of(context).go('/home1');
                                         },
-                                        text: 'Button',
+                                        text: 'Iniciar',
                                         icon: Icon(
                                           Icons.arrow_right_outlined,
                                           size: 15.0,

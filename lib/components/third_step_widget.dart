@@ -1,3 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:go_router/go_router.dart';
+import 'package:iron_body/backend/auth_manager.dart';
+import 'package:iron_body/backend/usecase/use.dart';
+import 'package:iron_body/flutter_flow/nav/nav.dart';
+
+import '../backend/entity/user.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -20,6 +27,8 @@ class ThirdStepWidget extends StatefulWidget {
 
 class _ThirdStepWidgetState extends State<ThirdStepWidget> {
   late ThirdStepModel _model;
+  final _authManager = AuthManager();
+  AuthManager get authManager => _authManager;
 
   @override
   void setState(VoidCallback callback) {
@@ -274,12 +283,42 @@ class _ThirdStepWidgetState extends State<ThirdStepWidget> {
                         ),
                         FFButtonWidget(
                           onPressed: () async {
-                            await Navigator.push(
+                            GoRouter.of(context).prepareAuthEvent();
+                            if (_model.passW1Controller.text !=
+                                _model.passW2Controller.text) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Passwords don\'t match!',
+                                  ),
+                                ),
+                              );
+                              return;
+                            }
+
+                            final user = await authManager.createUser(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => Home1Widget(),
-                              ),
+                              _model.emailController.text,
+                              _model.passW1Controller.text,
                             );
+
+                            if (user == null) {
+                              return;
+                            }
+
+                            UserRepository().addUser(User(
+                              firstName: ApplicationState().nombres1,
+                              lastName: ApplicationState().apellidos1,
+                              email:  _model.emailController.text,
+                              gender: ApplicationState().gender1,
+                              idCard: ApplicationState().idNum1.toString(),
+                              phone: ApplicationState().phoneNum1.replaceAll(RegExp(r'[^\d]'), ''),
+                              createdDate: DateTime.now(),
+                              lastModifiedDate: DateTime.now(),
+                              uid: user.uid!,
+                              birthDate: ApplicationState().fechaNam1!,
+                              ));
+                            GoRouter.of(context).go('/home1');
                           },
                           text: 'Registrar',
                           icon: Icon(

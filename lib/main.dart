@@ -1,10 +1,13 @@
 import 'package:go_router/go_router.dart';
 import 'package:iron_body/backend/app_state.dart';
+import 'package:iron_body/backend/firebase_init.dart';
+import 'package:iron_body/backend/usecase/use_event.dart';
+import 'package:iron_body/backend/usecase/use_trainer.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'backend/base_auth_user_provider.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
@@ -13,8 +16,8 @@ import 'flutter_flow/nav/nav.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  final appState = ApplicationState(); // Initialize FFAppState
+  await initFirebase();
+  final appState = ApplicationState(); // Initialize ApplicationState
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -38,25 +41,27 @@ class _MyAppState extends State<MyApp> {
   bool displaySplashImage = true;
   late GoRouter _router;
   late AppStateNotifier _appStateNotifier;
+  late Stream<BaseAuthUser> userStream;
 
-  
   @override
   void initState() {
     super.initState();
     _appStateNotifier = AppStateNotifier();
     _router = createRouter(_appStateNotifier);
+    userStream = ironBodyFirebaseUserStream()
+      ..listen((user) => _appStateNotifier.update(user));
     Future.delayed(
-        Duration(seconds: 5), () => _appStateNotifier.stopShowingSplashImage());
+        Duration(seconds: 5), () => _appStateNotifier.stopShowingSplashImage()
+    );  
   }
 
   void setLocale(String language) {
     setState(() => _locale = createLocale(language));
   }
 
-
-
   @override
   void dispose() {
+    _appStateNotifier.dispose();
     super.dispose();
   }
 
@@ -66,23 +71,29 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'ironBody',
-      localizationsDelegates: [
-        FFLocalizationsDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => new EventRepository()),
+        ChangeNotifierProvider(create: (_) => new TrainerRepository()),
       ],
-      locale: _locale,
-      supportedLocales: const [
-        Locale('es'),
-      ],
-      theme: ThemeData(brightness: Brightness.light),
-      themeMode: _themeMode,
-      routeInformationParser: _router.routeInformationParser,
-      routerDelegate: _router.routerDelegate,
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: 'ironBody',
+        localizationsDelegates: [
+          FFLocalizationsDelegate(),
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        locale: _locale,
+        supportedLocales: const [
+          Locale('es'),
+        ],
+        theme: ThemeData(brightness: Brightness.light),
+        themeMode: _themeMode,
+        routeInformationParser: _router.routeInformationParser,
+        routerDelegate: _router.routerDelegate,
+      ),
     );
   }
 }

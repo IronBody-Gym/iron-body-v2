@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:iron_body/backend/entity/trainer.dart';
 import '/trainer_detail/trainer_detail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

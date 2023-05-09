@@ -55,7 +55,7 @@ class _WorkoutDescriptionWidgetState extends State<WorkoutDescriptionWidget> {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: Image.network(
-                  'https://s3-alpha-sig.figma.com/img/3be5/76f4/8aed86b81c451050ff12fc47567f56dc?Expires=1681689600&Signature=N2HF8Hy-z2vLYEwqPOdLSllYuEWPPb-14XGlH9BoX8rWGrsP6NqN-3A8yx-OEn0klqz0Lnb1sc-6hOsEie5Bnk9ORlOYT-jyEueWwMpD~MHiG0lHjBJVfAOow3oX69nnzJya5xRkwz63Rk~LMSSBL7KQ~ycTzBSdRZlOa5ASVFv1nXuh24c732yTZw6YhzZib9uy2pVIKrRw~88ewoaCa8igihLKaiCSGiLGMfssUuS3XFjHB3qz6bL~AcG3q0ZjTBdSAq3auQSxZLBMa0YnVffdzq3cRxAvq3Gfz~E30KY1vXmsrPcD4ElomBFTxRsHR3xnMeFkyq0nbcupLa1-pg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                  'https://i.imgur.com/5bhLIQa.jpeg',
                 ).image,
               ),
             ),

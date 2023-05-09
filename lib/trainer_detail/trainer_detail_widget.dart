@@ -58,7 +58,7 @@ class _TrainerDetailWidgetState extends State<TrainerDetailWidget> {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: CachedNetworkImageProvider(
-                  'https://s3-alpha-sig.figma.com/img/e706/1f31/98f4255e72eb5641185a5ffbf5d83bc7?Expires=1682899200&Signature=Bt7PhG1py4f06A91HlM42ycufaD3NCde6trhNGMB9Ga6KLZ10D5UFBzRJJGPolwWBRrBlYtptfNSagk-txj4GP4QN98wzGGFp1e27ptJpoIdbEWIAD41fYSQ6wq8ae0Hy8ryW66oQ8vKrbaE2~iHY9FUf0ipVua8MsUf2k6O7efmBvYCGa9DGf53J~OuBgo4DgnxI~qS1pLDaytb6nWy885iINqH6FtlscM~VJhKJuMIHE4f7Kur27zHX3MBaKZnOIP5frccrFNIkT5oFc1YJ3P~LLGefZUbqERGhCTLywsJ6s0RAuHaWjKf-y-fHJLSfO6BTmoAZHgOrgvuvEeF6g__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                  'https://i.imgur.com/m1ELynD.jpeg',
                 ),
               ),
             ),
@@ -303,7 +303,7 @@ class _TrainerDetailWidgetState extends State<TrainerDetailWidget> {
                                               shape: BoxShape.circle,
                                             ),
                                             child: Image.network(
-                                              'https://s3-alpha-sig.figma.com/img/2897/6f7a/e058bf510bc1cd677037586cdd42b4ff?Expires=1682899200&Signature=UYAoH4G86WADLMN70RsRK6m~R7t9qdctTcal1j5MahYKvUu924bOOPQfy-Tg~RTs2VfhGjlAecgyy8jOIaXwvMMrcsaZGDCREWJUQxQqr2jxE7xwOsROhi6ycj8JlFKdWs-l36AJqnI3na81OhBW-jlNb8uUE5m9kAejpeRxB0yd~WHMFFGH8Z1Aw6pfhnSMkSkwg09ASh0vU2X0Gnf4iBSBuyI62ob~Hr3aP8-SjcB3li~6xVzX9LNFLPtncpwKpANnPRfWU8PABkpRq1Z1aw9BEMiBxME-hP63ckCruXwmzfuQXoXgkbmF5mn-ZHeBSCVNqQ-gsh6s8S02KmGr1w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                                              'https://i.imgur.com/q4vFtbK.jpeg',
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -427,7 +427,7 @@ class _TrainerDetailWidgetState extends State<TrainerDetailWidget> {
                                               shape: BoxShape.circle,
                                             ),
                                             child: Image.network(
-                                              'https://s3-alpha-sig.figma.com/img/2897/6f7a/e058bf510bc1cd677037586cdd42b4ff?Expires=1682899200&Signature=UYAoH4G86WADLMN70RsRK6m~R7t9qdctTcal1j5MahYKvUu924bOOPQfy-Tg~RTs2VfhGjlAecgyy8jOIaXwvMMrcsaZGDCREWJUQxQqr2jxE7xwOsROhi6ycj8JlFKdWs-l36AJqnI3na81OhBW-jlNb8uUE5m9kAejpeRxB0yd~WHMFFGH8Z1Aw6pfhnSMkSkwg09ASh0vU2X0Gnf4iBSBuyI62ob~Hr3aP8-SjcB3li~6xVzX9LNFLPtncpwKpANnPRfWU8PABkpRq1Z1aw9BEMiBxME-hP63ckCruXwmzfuQXoXgkbmF5mn-ZHeBSCVNqQ-gsh6s8S02KmGr1w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                                              'https://i.imgur.com/q4vFtbK.jpeg',
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -551,7 +551,7 @@ class _TrainerDetailWidgetState extends State<TrainerDetailWidget> {
                                               shape: BoxShape.circle,
                                             ),
                                             child: Image.network(
-                                              'https://s3-alpha-sig.figma.com/img/2897/6f7a/e058bf510bc1cd677037586cdd42b4ff?Expires=1682899200&Signature=UYAoH4G86WADLMN70RsRK6m~R7t9qdctTcal1j5MahYKvUu924bOOPQfy-Tg~RTs2VfhGjlAecgyy8jOIaXwvMMrcsaZGDCREWJUQxQqr2jxE7xwOsROhi6ycj8JlFKdWs-l36AJqnI3na81OhBW-jlNb8uUE5m9kAejpeRxB0yd~WHMFFGH8Z1Aw6pfhnSMkSkwg09ASh0vU2X0Gnf4iBSBuyI62ob~Hr3aP8-SjcB3li~6xVzX9LNFLPtncpwKpANnPRfWU8PABkpRq1Z1aw9BEMiBxME-hP63ckCruXwmzfuQXoXgkbmF5mn-ZHeBSCVNqQ-gsh6s8S02KmGr1w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                                              'https://i.imgur.com/q4vFtbK.jpeg',
                                               fit: BoxFit.cover,
                                             ),
                                           ),

@@ -66,7 +66,7 @@ class _FirstStepWidgetState extends State<FirstStepWidget> {
                     Duration(milliseconds: 2000),
                     () async {
                       _model.updatePage(() {
-                        FFAppState().nombres1 = _model.nameController.text;
+                        ApplicationState().nombres1 = _model.nameController.text;
                       });
                     },
                   ),
@@ -125,7 +125,7 @@ class _FirstStepWidgetState extends State<FirstStepWidget> {
                       Duration(milliseconds: 2000),
                       () async {
                         setState(() {
-                          FFAppState().apellidos1 =
+                          ApplicationState().apellidos1 =
                               _model.lastnameController.text;
                         });
                       },
@@ -206,7 +206,7 @@ class _FirstStepWidgetState extends State<FirstStepWidget> {
                               );
                             });
                           }
-                          FFAppState().fechaNam1 = _model.datePicked;
+                          ApplicationState().fechaNam1 = _model.datePicked;
                         },
                       ),
                       Column(

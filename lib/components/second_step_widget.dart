@@ -69,7 +69,7 @@ class _SecondStepWidgetState extends State<SecondStepWidget> {
                 onChanged: (val) async {
                   setState(() => _model.genderLIstValue = val);
                   setState(() {
-                    FFAppState().gender1 = _model.genderLIstValue!;
+                    ApplicationState().gender1 = _model.genderLIstValue!;
                   });
                 },
                 width: double.infinity,
@@ -99,7 +99,7 @@ class _SecondStepWidgetState extends State<SecondStepWidget> {
                   Duration(milliseconds: 2000),
                   () async {
                     setState(() {
-                      FFAppState().phoneNum1 = _model.phonePerController.text;
+                      ApplicationState().phoneNum1 = _model.phonePerController.text;
                     });
                   },
                 ),
@@ -152,7 +152,7 @@ class _SecondStepWidgetState extends State<SecondStepWidget> {
                   Duration(milliseconds: 2000),
                   () async {
                     setState(() {
-                      FFAppState().idNum1 =
+                      ApplicationState().idNum1 =
                           int.parse(_model.idCardController.text);
                     });
                   },

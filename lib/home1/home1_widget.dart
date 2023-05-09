@@ -1,3 +1,5 @@
+import 'package:go_router/go_router.dart';
+
 import '../backend/app_state.dart';
 import '/components/back_button_widget.dart';
 import '/components/nav_bar_gym_widget.dart';
@@ -78,11 +80,11 @@ class _Home1WidgetState extends State<Home1Widget>
     );
 
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      animationsMap['containerOnPageLoadAnimation1']!
-          .controller
+      animationsMap['containerOnPageLoadAnimation1']
+          ?.controller
           .forward(from: 0.0);
-      animationsMap['containerOnPageLoadAnimation6']!
-          .controller
+      animationsMap['containerOnPageLoadAnimation6']
+          ?.controller
           .forward(from: 0.0);
     });
   }
@@ -367,13 +369,8 @@ class _Home1WidgetState extends State<Home1Widget>
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    await Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Login2Widget(),
-                      ),
-                      (r) => false,
-                    );
+                    ApplicationState().signOut();
+                    GoRouter.of(context).go("/login2");
                   },
                   child: ListTile(
                     leading: Icon(
@@ -1471,7 +1468,7 @@ class _Home1WidgetState extends State<Home1Widget>
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image: Image.network(
-                                'https://s3-alpha-sig.figma.com/img/36cf/b6ce/479f2191de9ce3462a47819de7ef6636?Expires=1682294400&Signature=Zen49X8evMj4tHSDBqLv7mdWweaGovN8qWkbvjqifajIHcc5L5BDIgdLRE0NjEjFldXTWm2xEmeHSHQEveEqqXAD0DY8R99ZtkkcRuuBkea9T3JT-sGeC8kXLMjgCeDis63oZTBNhi5xyTzaZ4g~ZU24XY7vSk3jSGulz8XT~wkaqqitXb2u1JuuWDtPU6BjLh4JMCsl61VOl0QbqhopuVBIuqRahhJmcZ3iQDJFHkNWoAdkZbiXD3YmbjXeZ7nT5PZkFojx7P1yoeVjqYENnaxLYWuo4PpW5nRjmqttcVxXx0wTLIhTbjSE-er3TexqMNwdxJ-Mmx61nQy01OvD5w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                                'https://i.imgur.com/hb3KICr.png',
                               ).image,
                             ),
                             boxShadow: [

@@ -1,10 +1,13 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iron_body/backend/firebase_user_provider.dart';
 import 'package:page_transition/page_transition.dart';
+import '../../backend/base_auth_user_provider.dart';
 import '../flutter_flow_theme.dart';
-
+import 'package:rxdart/rxdart.dart';
 
 import '../../index.dart';
 import '../../main.dart';
@@ -18,9 +21,10 @@ export 'serialization_util.dart';
 const kTransitionInfoKey = '__transition_info__';
 
 class AppStateNotifier extends ChangeNotifier {
-
   bool showSplashImage = true;
   String? _redirectLocation;
+  BaseAuthUser? user;
+  BaseAuthUser? initialUser;
 
   /// Determines whether the app will refresh and build again when a sign
   /// in or sign out happens. This is useful when the app is launched or
@@ -29,9 +33,9 @@ class AppStateNotifier extends ChangeNotifier {
   /// Otherwise, this will trigger a refresh and interrupt the action(s).
   bool notifyOnAuthChange = true;
 
-  bool get loading =>  showSplashImage;
-  bool get loggedIn => false;
-  bool get initiallyLoggedIn =>  false;
+  bool get loading => showSplashImage;
+  bool get loggedIn =>  user?.loggedIn ?? false;
+  bool get initiallyLoggedIn => initialUser?.loggedIn ?? false;
   bool get shouldRedirect => loggedIn && _redirectLocation != null;
 
   String getRedirectLocation() => _redirectLocation!;
@@ -43,12 +47,38 @@ class AppStateNotifier extends ChangeNotifier {
   /// to perform subsequent actions (such as navigation) afterwards.
   void updateNotifyOnAuthChange(bool notify) => notifyOnAuthChange = notify;
 
-
   void stopShowingSplashImage() {
     showSplashImage = false;
     notifyListeners();
   }
+
+
+  void update(BaseAuthUser newUser) {
+    initialUser ??= newUser;
+    user = newUser;
+    // Refresh the app on auth change unless explicitly marked otherwise.
+    if (notifyOnAuthChange) {
+      notifyListeners();
+    }
+    // Once again mark the notifier as needing to update on auth change
+    // (in order to catch sign in / out events).
+    updateNotifyOnAuthChange(true);
+  }
 }
+
+
+Stream<BaseAuthUser> ironBodyFirebaseUserStream() => FirebaseAuth.instance
+        .authStateChanges()
+        .debounce((user) => user == null && !loggedIn
+            ? TimerStream(true, const Duration(seconds: 1))
+            : Stream.value(user))
+        .map<BaseAuthUser>(
+      (user) {
+        currentUser = IronBodyFirebaseUser(user);
+        return currentUser!;
+      },
+    );
+
 
 GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
@@ -66,8 +96,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'SingIn',
           path: '/singIn',
-          builder: (context, params) => SingInWidget(
-          ),
+          builder: (context, params) => SingInWidget(),
         ),
         FFRoute(
           name: 'SignUp',
@@ -220,6 +249,8 @@ extension NavParamExtensions on Map<String, String?> {
             .map((e) => MapEntry(e.key, e.value!)),
       );
 }
+
+
 
 extension NavigationExtensions on BuildContext {
   void goNamedAuth(
@@ -387,9 +418,7 @@ class FFRoute {
                   builder: (context, _) => builder(context, ffParams),
                 )
               : builder(context, ffParams);
-          final child = appStateNotifier.loading
-              ? new SplashWidget()
-              : page;
+          final child = appStateNotifier.loading ? new SplashWidget() : page;
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition
