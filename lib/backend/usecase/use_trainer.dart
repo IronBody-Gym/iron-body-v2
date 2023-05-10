@@ -4,44 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:iron_body/backend/entity/trainer.dart';
 import 'package:iron_body/backend/entity/type.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:iron_body/backend/usecase/use_hybrid.dart';
 
 class TrainerRepository extends ChangeNotifier {
-  final CollectionReference _refTrainer =
-      FirebaseFirestore.instance.collection('trainer');
-
+  
+  HybridRepository _repo = HybridRepository.getInstance();
   List<GymTrainer> listTrainer = [];
 
   addTrainer(GymTrainer trainer) async {
-    await _refTrainer.doc(trainer.uid).set(trainer.toMap());
+    await this._repo.addTrainer(trainer);
     this.getTrainer();
   }
 
   getTrainer() async {
-    final querySnapshot = await _refTrainer.get();
-    List<GymTrainer> listTrainer = [];
-    if (querySnapshot.docs.isNotEmpty) {
-      for (final doc in querySnapshot.docs) {
-        Map<String, dynamic> mapType = doc['type'];
-        final ref = FirebaseStorage.instance.ref().child(doc['url_image']);
-        final downloadUrl = await ref.getDownloadURL();
-
-        listTrainer.add(GymTrainer(
-            address: doc['address'],
-            name: doc['name'],
-            lastName: doc['last_name'],
-            email: doc['email'],
-            phone: doc['phone'],
-            state: doc['state'],
-            type: TypeTrainer(label: mapType["label"], value: mapType["value"]),
-            image: downloadUrl,
-            year: doc['year'],
-            uid: doc['uid']));
-      }
-      this.listTrainer = listTrainer;
+      this.listTrainer = await  this._repo.getTrainer();
       notifyListeners();
-      return;
-    }
-    this.listTrainer = [];
-    notifyListeners();
   }
 }

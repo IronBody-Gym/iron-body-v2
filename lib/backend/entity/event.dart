@@ -1,3 +1,5 @@
+import 'package:iron_body/backend/entity/trainer.dart';
+
 class EventTrainer {
 
   String id;
@@ -6,6 +8,8 @@ class EventTrainer {
   DateTime end;
   String status;
   String title;
+  String uidTrainer;
+  GymTrainer? trainer;
 
   EventTrainer({
     required this.id,
@@ -14,6 +18,8 @@ class EventTrainer {
     required this.end,
     required this.status,
     required this.title,
+    required this.uidTrainer,
+    this.trainer
   });
 
   Map<String, dynamic> toMap() {
@@ -24,6 +30,8 @@ class EventTrainer {
       'end': end,
       'statu': status,
       'title': title,
+      "uidTrainer" : uidTrainer,
+      "trainer" : trainer?.toMap(),
     };
   }
 

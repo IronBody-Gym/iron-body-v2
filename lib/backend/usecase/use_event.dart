@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:iron_body/backend/entity/event.dart';
+import 'package:iron_body/backend/usecase/use_hybrid.dart';
 
 class EventRepository extends ChangeNotifier {
   final CollectionReference _refEvent =
       FirebaseFirestore.instance.collection('event');
       DateTimeRange? calendarSelectedDay;
+  HybridRepository _repo = HybridRepository.getInstance();
 
   List<EventTrainer> listEvent = [];
 
@@ -27,14 +29,19 @@ class EventRepository extends ChangeNotifier {
       for (final doc in querySnapshot.docs) {
         Timestamp start =  doc['start'];
         Timestamp end =  doc['end'];
-
-        listEvent.add(EventTrainer(
+        EventTrainer event = EventTrainer(
             id: doc['id'],
             allDay: doc['allDay'],
             start: start.toDate(),
             end: end.toDate(),
             status: doc['statu'],
-            title: doc['title'])
+            title: doc['title'],
+            uidTrainer: doc["uid"]);
+            if(event.uidTrainer!= ""){
+              event.trainer = await _repo.getTrainerById(event.uidTrainer);
+            }
+        listEvent.add(
+          event
         );
       }
       this.listEvent = listEvent;

@@ -1,6 +1,7 @@
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:iron_body/backend/usecase/use_event.dart';
 import 'package:iron_body/backend/usecase/use_trainer.dart';
+import 'package:iron_body/backend/usecase/use_hybrid.dart';
 
 import '/components/nav_bar_gym_widget.dart';
 import '/event/event_widget.dart';
@@ -166,6 +167,7 @@ class _GymEventsWidgetState extends State<GymEventsWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child:
                         Consumer<EventRepository>(builder: (context, value, child) =>ListView.builder(
+                          
                           itemCount: value.listEvent.length,
                           itemBuilder: ( _ , i) => Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -255,7 +257,7 @@ class _GymEventsWidgetState extends State<GymEventsWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             14.0, 7.0, 0.0, 0.0),
                                         child: Text(
-                                          'Gabriela Leiva',
+                                          value.listEvent[i].trainer == null ? "N.N." : ( (value.listEvent[i].trainer?.name ?? "")  + " " +  (value.listEvent[i].trainer?.lastName ?? "")) ,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
                                         ),
@@ -292,7 +294,7 @@ class _GymEventsWidgetState extends State<GymEventsWidget> {
     return Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Vista Semanal', style: FlutterFlowTheme.of(context)
+                      Text('Vista Mensual', style: FlutterFlowTheme.of(context)
                                               .labelMedium),
                       Switch(
                         activeColor: Color.fromRGBO(71, 246, 44, 1),
@@ -304,7 +306,7 @@ class _GymEventsWidgetState extends State<GymEventsWidget> {
                           });
                         },
                       ),
-                      Text('Vista Mensual', style: FlutterFlowTheme.of(context)
+                      Text('Vista Semanal', style: FlutterFlowTheme.of(context)
                                               .labelMedium),
                     ],
                   );

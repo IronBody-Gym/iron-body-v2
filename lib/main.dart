@@ -3,6 +3,7 @@ import 'package:iron_body/backend/app_state.dart';
 import 'package:iron_body/backend/firebase_init.dart';
 import 'package:iron_body/backend/usecase/use_event.dart';
 import 'package:iron_body/backend/usecase/use_trainer.dart';
+import 'package:iron_body/backend/usecase/use_hybrid.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
