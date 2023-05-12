@@ -1,5 +1,5 @@
 class Review {
-  String? scoreReview;
+  double? scoreReview;
   String descpription;
   String uidTrainer;
   String uid;

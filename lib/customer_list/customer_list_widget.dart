@@ -467,7 +467,7 @@ class _CustomerListWidgetState extends State<CustomerListWidget>
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => TrainerDetailWidget(),
+                                    builder: (context) => TrainerDetailWidget(uid: ''),
                                   ),
                                 );
                               },

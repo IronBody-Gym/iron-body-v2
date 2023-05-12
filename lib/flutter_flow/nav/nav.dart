@@ -166,12 +166,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'TrainerDetail',
           path: '/trainerDetail',
-          builder: (context, params) => TrainerDetailWidget(),
+          builder: (context, params) => TrainerDetailWidget(uid: ''),
         ),
         FFRoute(
           name: 'WriteReview',
           path: '/writeReview',
-          builder: (context, params) => WriteReviewWidget(),
+          builder: (context, params) => WriteReviewWidget(uidTrainer: ""),
         ),
         FFRoute(
           name: 'Event',

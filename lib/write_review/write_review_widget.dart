@@ -1,4 +1,6 @@
+import 'package:iron_body/backend/base_auth_user_provider.dart';
 import 'package:iron_body/flutter_flow/nav/nav.dart';
+import 'package:iron_body/backend/usecase/use.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -12,16 +14,21 @@ export 'write_review_model.dart';
 import 'package:iron_body/backend/app_state.dart';
 
 class WriteReviewWidget extends StatefulWidget {
-  const WriteReviewWidget({Key? key}) : super(key: key);
+  final String uidTrainer;
+  const WriteReviewWidget({Key? key, required this.uidTrainer}) : super(key: key);
 
   @override
-  _WriteReviewWidgetState createState() => _WriteReviewWidgetState();
+  _WriteReviewWidgetState createState() => 
+      _WriteReviewWidgetState(uidTrainer:uidTrainer );
 }
 
 class _WriteReviewWidgetState extends State<WriteReviewWidget> {
   late WriteReviewModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  String uidTrainer;
+  String uidUser=currentUser?.uid ?? "";
+  _WriteReviewWidgetState({required this.uidTrainer});
   final _unfocusNode = FocusNode();
 
   @override
@@ -42,7 +49,7 @@ class _WriteReviewWidgetState extends State<WriteReviewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
+    context.watch<ApplicationState>();
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
