@@ -12,7 +12,7 @@ class ReviewRepository {
 
   FutureOr<Review> getReviewByUid(String uid) async {
     
-    final querySnapshot = await _refReview.where("uid", isEqualTo: uid).get();
+    final querySnapshot = await _refReview.where("uid_trainer", isEqualTo: uid).get();
     if (querySnapshot.docs.isNotEmpty) {
       final doc = querySnapshot.docs.first;
       return Review(

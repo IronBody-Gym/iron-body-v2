@@ -1,10 +1,14 @@
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iron_body/backend/app_state.dart';
 import 'package:iron_body/backend/firebase_init.dart';
+import 'package:iron_body/backend/usecase/use.dart';
 import 'package:iron_body/backend/usecase/use_event.dart';
 import 'package:iron_body/backend/usecase/use_trainer.dart';
 import 'package:iron_body/backend/usecase/use_hybrid.dart';
+import 'package:iron_body/services/push_notification_server.dart';
 import 'package:provider/provider.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -17,6 +21,9 @@ import 'flutter_flow/nav/nav.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await PushNotificationService.initializeApp();
+
+  
   await initFirebase();
   final appState = ApplicationState(); // Initialize ApplicationState
 
@@ -24,6 +31,7 @@ void main() async {
     create: (context) => appState,
     child: MyApp(),
   ));
+
 }
 
 class MyApp extends StatefulWidget {
@@ -76,6 +84,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (_) => new EventRepository()),
         ChangeNotifierProvider(create: (_) => new TrainerRepository()),
+        ChangeNotifierProvider(create: (_) => new UserRepository()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

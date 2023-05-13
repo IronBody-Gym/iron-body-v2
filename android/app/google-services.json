@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:159664010513:android:c13439b55886c571f6c8b0",
+        "mobilesdk_app_id": "1:159664010513:android:8f7da1c5dace812af6c8b0",
         "android_client_info": {
-          "package_name": "com.mycompany.ironbody"
+          "package_name": "com.ironbody.ironbody"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "159664010513-alhap7vophoqcpbsooiv0masr0r5nmrn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ironbody.ironbody",
+            "certificate_hash": "6810f4b792c8a23f37e1decbbb3bcbd39a65d450"
+          }
+        },
         {
           "client_id": "159664010513-pi7urummlkjbccj4o4ufviu1mfqh9hqh.apps.googleusercontent.com",
           "client_type": 3

@@ -10,7 +10,7 @@ class TrainerRepository extends ChangeNotifier {
   
   HybridRepository _repo = HybridRepository.getInstance();
   List<GymTrainer> listTrainer = [];
-
+  GymTrainer ? trainer;
   addTrainer(GymTrainer trainer) async {
     await this._repo.addTrainer(trainer);
     this.getTrainer();
@@ -19,5 +19,10 @@ class TrainerRepository extends ChangeNotifier {
   getTrainer() async {
       this.listTrainer = await  this._repo.getTrainer();
       notifyListeners();
+  }
+
+  getTrainerById(String uid) async {
+    trainer = await  this._repo.getTrainerById(uid);
+    notifyListeners();
   }
 }
